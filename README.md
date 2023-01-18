@@ -73,7 +73,12 @@ Example command for IXI dataset, training on 10 MRIs
 
 
 ```
-python main.py ixi  MVTEC_LeNet <path_to_write_out_log_files> <path_to_data> --data_split_path ~/motion/dfs/ --eval_epoch 1  --device cuda:2 --n  10  --objective one-class --seed 1001 --lr 0.0001 --n_epochs 150 --lr_milestone 50 --batch_size 200 --weight_decay 0.5e-6 --pretrain True  --ae_lr 0.0001 --ae_n_epochs 150 --ae_lr_milestone 50 --ae_batch_size 200 --ae_weight_decay 0.5e-3 --normal_class 1
+python main.py ixi  MVTEC_LeNet <path_to_write_out_log_files> <path_to_data> --data_split_path <path_to_metadata> --eval_epoch 1  --device cuda:2 --n  10  --objective one-class --seed 1001 --lr 0.0001 --n_epochs 150 --lr_milestone 50 --batch_size 200 --weight_decay 0.5e-6 --pretrain True  --ae_lr 0.0001 --ae_n_epochs 150 --ae_lr_milestone 50 --ae_batch_size 200 --ae_weight_decay 0.5e-3 --normal_class 1
+```
+
+Example command for MR-ART dataset, training on 10 MRIs
+```
+python main.py mrart  MVTEC_LeNet  <path_to_write_out_log_files> <path_to_data> --data_split_path <path_to_metadata> --eval_epoch 1  --device cuda:0 --n 10  --objective one-class --seed 1001 --lr 0.0001 --n_epochs 150 --lr_milestone 50 --batch_size 200 --weight_decay 0.5e-6 --pretrain True  --ae_lr 0.0001 --ae_n_epochs 150 --ae_lr_milestone 50 --ae_batch_size 200 --ae_weight_decay 0.5e-3 --normal_class 1
 ```
 
 The model pretrains before training. The model is evaluated on the test set after each epoch. 
