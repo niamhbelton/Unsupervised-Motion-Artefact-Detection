@@ -14,6 +14,8 @@ separated into files (see zip file)
 ## Models
 ### DeepSVDD
 
+Code based on: https://github.com/lukasruff/Deep-SVDD
+
 Arguments 
 ```
 @click.command()
