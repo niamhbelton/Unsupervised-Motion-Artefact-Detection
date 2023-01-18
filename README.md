@@ -10,6 +10,18 @@
 ### IXI
 separated into files (see zip file)
 
+## Installation 
+
+```
+git clone https://github.com/niamhbelton/Unsupervised-Motion-Artefact-Detection.git```
+
+```
+pip install virtualenv
+virtualenv myenv
+source myenv/bin/activate
+pip install -r requirements.txt
+```
+
 
 ## Models
 ### DeepSVDD
