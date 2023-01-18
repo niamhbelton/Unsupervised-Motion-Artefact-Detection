@@ -16,12 +16,13 @@ separated into files (see zip file)
 
 Arguments 
 ```
-@click.argument('dataset_name')
-@click.argument('net_name')
-@click.argument('xp_path', type=click.Path(exists=True))
-@click.argument('data_path', type=click.Path(exists=True))
-@click.option('--pollution', default=0.0)
-@click.option('--n', default=0)
+@click.command()
+@click.argument('dataset_name', ,type=click.Choice(['ixi', 'mrart','mnist', 'fmnist', 'cifar10']))
+@click.argument('net_name',type=click.Choice(['MVTEC_LeNet', 'FMNIST_LeNet', 'CIFAR10_LeNet', 'MNIST_LeNet']))
+@click.argument('xp_path', help='Path to write log files to', type=click.Path(exists=True))
+@click.argument('data_path',  help='Path to data', type=click.Path(exists=True))
+@click.option('--pollution',  help='Percentage of training data to be polluted with anomalies.', default=0.0)
+@click.option('--n',   help='Number of data instances to train on.' , default=0)
 @click.option('--load_config', type=click.Path(exists=True), default=None,
               help='Config JSON-file path (default: None).')
 @click.option('--load_model', type=click.Path(exists=True), default=None,
@@ -60,9 +61,9 @@ Arguments
 @click.option('--normal_class', type=int, default=0,
               help='Specify the normal class of the dataset (all other classes are considered anomalous).')
 @click.option('--eval_epoch', type=int, default=0,
-              help='Evaluate on test set after each epoch.')
+              help='Set to one to evaluate on test set after each epoch.')
 @click.option('--data_split_path', type=str, default='df',
-              help='Evaluate on test set after each epoch.')
+              help='Path to metadata to confirm correct train-test split.')
               
 ```
 
