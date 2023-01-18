@@ -119,4 +119,9 @@ The log file shows after each time it is evaluated on the test set (after each e
 
 'Average inference time per batch'
 
+
+
+## References
+Ruff, L., Vandermeulen, R., Goernitz, N., Deecke, L., Siddiqui, S.A., Binder, A., Müller, E. and Kloft, M., 2018, July. Deep one-class classification. In International conference on machine learning (pp. 4393-4402). PMLR.
+
      
