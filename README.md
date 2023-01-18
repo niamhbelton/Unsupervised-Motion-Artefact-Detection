@@ -30,6 +30,12 @@ pip install -r requirements.txt
 
 Code based on: https://github.com/lukasruff/Deep-SVDD
 
+```
+cd Deep-SVDD
+mkdir log
+cd src
+```
+
 Arguments 
 ```
 @click.command()
