@@ -20,6 +20,7 @@ git clone https://github.com/niamhbelton/Unsupervised-Motion-Artefact-Detection.
 pip install virtualenv
 virtualenv myenv
 source myenv/bin/activate
+cd <path-to-algorithms-directory>
 pip install -r requirements.txt
 ```
 
