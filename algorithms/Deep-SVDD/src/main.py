@@ -18,7 +18,7 @@ from datasets.main import load_dataset
 # Settings
 ################################################################################
 @click.command()
-@click.argument('dataset_name', ,type=click.Choice(['ixi', 'mrart','mnist', 'fmnist', 'cifar10']))
+@click.argument('dataset_name',type=click.Choice(['ixi', 'mrart','mnist', 'fmnist', 'cifar10']))
 @click.argument('net_name',type=click.Choice(['MVTEC_LeNet', 'FMNIST_LeNet', 'CIFAR10_LeNet', 'MNIST_LeNet']))
 @click.argument('xp_path', help='Path to write log files to', type=click.Path(exists=True))
 @click.argument('data_path',  help='Path to data', type=click.Path(exists=True))
