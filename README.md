@@ -15,7 +15,7 @@ separated into files (see zip file)
 ### DeepSVDD
 
 Arguments 
-
+```
 @click.argument('dataset_name')
 @click.argument('net_name')
 @click.argument('xp_path', type=click.Path(exists=True))
@@ -64,7 +64,7 @@ Arguments
 @click.option('--data_split_path', type=str, default='df',
               help='Evaluate on test set after each epoch.')
               
-            
+```
 
 
 
