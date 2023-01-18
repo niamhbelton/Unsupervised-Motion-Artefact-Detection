@@ -13,7 +13,8 @@ separated into files (see zip file)
 ## Installation 
 
 ```
-git clone https://github.com/niamhbelton/Unsupervised-Motion-Artefact-Detection.git```
+git clone https://github.com/niamhbelton/Unsupervised-Motion-Artefact-Detection.git
+```
 
 ```
 pip install virtualenv
