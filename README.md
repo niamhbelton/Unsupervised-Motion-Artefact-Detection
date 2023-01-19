@@ -30,9 +30,11 @@ pip install -r requirements.txt
 
 Code based on: https://github.com/lukasruff/Deep-SVDD
 
+xp_path is the directory to write the output files to 
+
 ```
 cd Deep-SVDD
-mkdir log
+mkdir <xp_path>
 cd src
 ```
 
