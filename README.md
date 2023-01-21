@@ -7,7 +7,8 @@ Each model was run for five seeds, The folder metadata contains the train-test s
 
 ### MR-ART
 Download the data from the following link; https://openneuro.org/datasets/ds004173/versions/1.0.2
-Change the file paths in the notebook 'convert_mrart_to_png.ipynb' and run the notebook to convert each MR-ART MRI to individual slices of type png. The code also splits the data into folders 'ones', 'twos' and 'threes' depending on their quality assessment score as given in scores.tsv.
+
+Change the file paths in the notebook 'Data_Prep/convert_mrart_to_png.ipynb' and run the notebook to convert each MR-ART MRI to individual slices of type png. The code also splits the data into folders 'ones', 'twos' and 'threes' depending on their quality assessment score as given in scores.tsv.
 
 ### IXI
 The data for the IXI dataset is provided in a zip file. 
