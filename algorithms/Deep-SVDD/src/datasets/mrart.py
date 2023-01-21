@@ -59,7 +59,7 @@ class MRART_Dataset(data.Dataset):
 
 
         if self.task == 'train':
-            path = root +  '/separate/ones/'
+            path = root +  '/ones/'
 
             for file in train_files:
                 for slice in range(192):
@@ -77,7 +77,7 @@ class MRART_Dataset(data.Dataset):
 
         else:
             c = 0
-            paths = [root +'/separate/ones/', root +'/separate/twos/', root +'/separate/threes/']
+            paths = [root +'/ones/', root +'/twos/', root +'/threes/']
             for i,path in enumerate(paths):
                 files = os.listdir(path)
                 for file in files:
