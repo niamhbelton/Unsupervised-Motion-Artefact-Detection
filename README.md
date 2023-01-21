@@ -44,7 +44,9 @@ mkdir <xp_path>
 cd src
 ```
 
-Arguments 
+Arguments:
+xp_path is the path to write the output files to
+
 ```
 @click.argument('dataset_name', type=click.Choice(['ixi', 'mrart','mnist', 'fmnist', 'cifar10']))
 @click.argument('net_name',type=click.Choice(['MVTEC_LeNet', 'FMNIST_LeNet', 'CIFAR10_LeNet', 'MNIST_LeNet']))
