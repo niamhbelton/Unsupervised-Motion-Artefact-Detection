@@ -50,7 +50,7 @@ class MRART_Dataset(data.Dataset):
         self.targets_sev = []
 
         #check its correct training data
-        check = pd.read_csv(data_split_path + 'df_mrart_seed_' + str(seed) + '_n_' +str(N))
+        check = pd.read_csv(data_split_path + 'df_seed_' + str(seed) + '_n_' +str(N))
 
         for f in ids:
             assert f in list(check['file'].loc[check['split'] =='train'])
