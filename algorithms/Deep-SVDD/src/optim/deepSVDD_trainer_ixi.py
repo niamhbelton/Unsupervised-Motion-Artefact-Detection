@@ -278,15 +278,17 @@ class DeepSVDDTrainer_ixi(BaseTrainer):
 
 
 
-        logger.info('Test set AUC: {:.2f}%'.format(100. * self.test_auc))
-        logger.info('Test set F1: {:.2f}%'.format(100. * self.test_f1))
-        logger.info('Test set Balanced Accuarcy: {:.2f}%'.format(100. * self.test_acc))
 
-        logger.info('Test set based on min AUC: {:.2f}%'.format(100. * self.test_auc2))
-        logger.info('Test set based on min F1: {:.2f}%'.format(100. * self.test_f1_2))
-        logger.info('Test set based on min Balanced Accuarcy: {:.2f}%'.format(100. * self.test_acc2))
 
-    
+        logger.info('Test set AUC based on mean anomaly score per volume: {:.2f}%'.format(100. * self.test_auc))
+        logger.info('Test set F1 based on mean anomaly score per volume: {:.2f}%'.format(100. * self.test_f1))
+        logger.info('Test set Balanced Accuarcy based on mean anomaly score per volume: {:.2f}%'.format(100. * self.test_acc))
+
+        logger.info('Test set AUC based on max anomaly score per volume:  {:.2f}%'.format(100. * self.test_auc2))
+        logger.info('Test set F1 based on max anomaly score per volume:  {:.2f}%'.format(100. * self.test_f1_2))
+        logger.info('Test set Balanced Accuracy based on max anomaly score per volume:  {:.2f}%'.format(100. * self.test_acc2))
+
+
 
     #    logger.info('Severity AUC {:.2f}%'.format(100. * auc_sev ))
     #    logger.info('Severity AUC based on max {:.2f}%'.format(100. * auc_sev2 ))
