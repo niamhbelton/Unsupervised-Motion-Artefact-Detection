@@ -126,7 +126,6 @@ The output for the above command is
   * 'pred' - converting 'output' to binary value of 0 and 1 using a threshold based on the class balance
   * 'pred2' - converting 'output1' to binary value of 0 and 1 using a threshold based on the class balance
 
-The log file shows after each time it is evaluated on the test set (after each epoch)
 * A log file named log.txt is output to the xp_path with training and testing details. This provides details on the AUC, F1, Balanced accuracy and inference time.
 
 
