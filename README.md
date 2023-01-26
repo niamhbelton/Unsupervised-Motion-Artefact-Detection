@@ -18,7 +18,7 @@ Each model was run for five seeds, The folder metadata contains the train-test s
 * To generate the dataset in ixi_dataset.zip; 
   * download the T2 images from the following link; https://openneuro.org/datasets/ds004173/versions/1.0.2
   * modify the file paths 'genDir' and 't2Path' in Data_Prep/MotionUtils/GenerateMotion.py to the directory where you want to store the generated files and the directory where original data is. Code originally from; https://github.com/antecessor/MRI_Motion_Classification/tree/master/Utils/MotionUtils.
-  * run the notebook Data_Prep/ to split the generated data into directories 'anom' and 'normal'
+  * change the directory paths in the Data_Prep/move_ixi_files_to_directories.ipynb notebook and run the code to split the generated data into directories 'anom' and 'normal'
   
 ```
 cd <Unsupervised-Motion-Artefact-Detection/Data_Prep/MotionUtils>
