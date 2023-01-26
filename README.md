@@ -1,28 +1,35 @@
 # Unsupervised-Motion-Artefact-Detection
 
-
-
-## Data 
-Each model was run for five seeds, The folder metadata contains the train-test splits for both datasets for each train set size and each seed for sampling the train set, named as 'df_seed_<seed>_n_<train_set_size>'. The files in the 'MR-ART' dataset indicate the subject ID for the training set but it specifies the complete MRI name for the validation data.
-
-### MR-ART
-Download the data from the following link; https://openneuro.org/datasets/ds004173/versions/1.0.2
-
-Change the file paths in the notebook 'Data_Prep/convert_mrart_to_png.ipynb' and run the notebook to convert each MR-ART MRI to individual slices of type png. The code also splits the data into folders 'ones', 'twos' and 'threes' depending on their quality assessment score as given in scores.tsv.
-
-### IXI
-The data for the IXI dataset is provided in a zip file. 
-separated into files (see zip file)
-
-To generate the dataset:
-
-Download the T2 images from the following link; https://openneuro.org/datasets/ds004173/versions/1.0.2
-
 ## Installation 
 
 ```
 git clone https://github.com/niamhbelton/Unsupervised-Motion-Artefact-Detection.git
 ```
+
+## Data 
+Each model was run for five seeds, The folder metadata contains the train-test splits for both datasets for each train set size and each seed for sampling the train set, named as 'df_seed_<seed>_n_<train_set_size>'. The files in the 'MR-ART' dataset indicate the subject ID for the training set but it specifies the complete MRI name for the validation data.
+
+### MR-ART
+* Download the data from the following link; https://openneuro.org/datasets/ds004173/versions/1.0.2
+* Change the file paths in the notebook 'Data_Prep/convert_mrart_to_png.ipynb' and run the notebook to convert each MR-ART MRI to individual slices of type png. The code also splits the data into folders 'ones', 'twos' and 'threes' depending on their quality assessment score as given in scores.tsv.
+
+### IXI
+* The data for the IXI dataset is provided in 'Data_Prep/ixi_dataset.zip'. There are two directories in ixi_dataset; 'anom' and 'normal', where the anom directory contains a .tiff file for each slice of MRIs that has synthetic motion artefacts and the 'normal' directory contains the normal files.
+* To generate the dataset in ixi_dataset.zip; 
+  * download the T2 images from the following link; https://openneuro.org/datasets/ds004173/versions/1.0.2
+  * modify the file paths 'genDir' and 't2Path' in Data_Prep/MotionUtils/GenerateMotion.py to the directory where you want to store the generated files and the directory where original data is. Code originally from; https://github.com/antecessor/MRI_Motion_Classification/tree/master/Utils/MotionUtils.
+  * run the notebook Data_Prep/ to split the generated data into directories 'anom' and 'normal'
+  
+```
+cd <Unsupervised-Motion-Artefact-Detection/Data_Prep/MotionUtils>
+python3 GenerateMotion.py
+```
+
+
+
+
+
+## Models
 
 ```
 pip install virtualenv
@@ -33,7 +40,7 @@ pip install -r requirements.txt
 ```
 
 
-## Models
+
 ### DeepSVDD
 
 Code based on: https://github.com/lukasruff/Deep-SVDD
@@ -132,6 +139,9 @@ The output for the above command is
 
 
 ## References
+
+Mohebbian, M., Walia, E., Habibullah, M., Stapleton, S. and Wahid, K.A., 2021. Classifying MRI motion severity using a stacked ensemble approach. Magnetic Resonance Imaging, 75, pp.107-115.
+
 Ruff, L., Vandermeulen, R., Goernitz, N., Deecke, L., Siddiqui, S.A., Binder, A., Müller, E. and Kloft, M., 2018, July. Deep one-class classification. In International conference on machine learning (pp. 4393-4402). PMLR.
 
      
