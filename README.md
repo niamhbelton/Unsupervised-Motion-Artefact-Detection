@@ -118,19 +118,14 @@ python main.py mrart  MVTEC_LeNet  <xp_path> <path_to_data> --data_split_path <p
 #### Output Files
 
 The output for the above command is 
-The epoch with the best result will write out a file with /final_data_n_10_seed_1001' with columns, 
+* The epoch with the best result will write out a file with /final_data_n_10_seed_1001' with columns, 
 
-* 'output' - anomaly score (based on mean anomaly scores of slices) 
-
-* 'output1' - anomaly score (based on max anomaly score of slices)
-
-* 'label' - 0 for normals, 1s for anomalies. 
-
-* 'label_sev' - ignore for IXI dataset, only applicable to 'MR-ART', 0 for normal, 1 for medium quality and 2 for good quality.
-
-* 'pred' - converting 'output' to binary value of 0 and 1 using a threshold based on the class balance
-
-* 'pred2' - converting 'output1' to binary value of 0 and 1 using a threshold based on the class balance
+  * 'output' - anomaly score (based on mean anomaly scores of slices) 
+  * 'output1' - anomaly score (based on max anomaly score of slices)
+  * 'label' - 0 for normals, 1s for anomalies. 
+  * 'label_sev' - ignore for IXI dataset, only applicable to 'MR-ART', 0 for normal, 1 for medium quality and 2 for good quality.
+  * 'pred' - converting 'output' to binary value of 0 and 1 using a threshold based on the class balance
+  * 'pred2' - converting 'output1' to binary value of 0 and 1 using a threshold based on the class balance
 
 The log file shows after each time it is evaluated on the test set (after each epoch)
 
