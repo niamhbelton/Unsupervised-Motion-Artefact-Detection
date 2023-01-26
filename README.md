@@ -118,30 +118,17 @@ python main.py mrart  MVTEC_LeNet  <xp_path> <path_to_data> --data_split_path <p
 #### Output Files
 
 The output for the above command is 
-* The epoch with the best result will write out a file with /final_data_n_10_seed_1001' with columns, 
-
+* A file named final_data_n_<training_set_size>_seed_<seed> is output to the xp_path with results based on the epoch with the best AUC. The columns are as follows; 
   * 'output' - anomaly score (based on mean anomaly scores of slices) 
   * 'output1' - anomaly score (based on max anomaly score of slices)
-  * 'label' - 0 for normals, 1s for anomalies. 
+  * 'label' - 0 for normals, 1 for anomalies. 
   * 'label_sev' - ignore for IXI dataset, only applicable to 'MR-ART', 0 for normal, 1 for medium quality and 2 for good quality.
   * 'pred' - converting 'output' to binary value of 0 and 1 using a threshold based on the class balance
   * 'pred2' - converting 'output1' to binary value of 0 and 1 using a threshold based on the class balance
 
 The log file shows after each time it is evaluated on the test set (after each epoch)
+* A log file named log.txt is output to the xp_path with training and testing details. This provides details on the AUC, F1, Balanced accuracy and inference time.
 
-'Test set AUC based on mean anomaly score per volume:'
-
-'Test set F1 based on mean anomaly score per volume:'
-
-'Test set Balanced Accuarcy based on mean anomaly score per volume:'
-
-'Test set AUC based on max anomaly score per volume:'
-
-'Test set F1 based on max anomaly score per volume:'
-
-'Test set Balanced Accuracy based on max anomaly score per volume:'
-
-'Average inference time per batch'
 
 
 
