@@ -38,7 +38,7 @@ pip install -r requirements.txt
 
 Code based on: https://github.com/lukasruff/Deep-SVDD
 
-xp_path is the directory to write the output files to 
+Run the following commands before running the model. The 'xp_path' is the directory to write the output files to.
 
 ```
 cd Deep-SVDD
@@ -46,8 +46,7 @@ mkdir <xp_path>
 cd src
 ```
 
-Arguments:
-xp_path is the path to write the output files to
+The arguments to run the model are shown below;
 
 ```
 @click.argument('dataset_name', type=click.Choice(['ixi', 'mrart','mnist', 'fmnist', 'cifar10']))
@@ -103,36 +102,35 @@ xp_path is the path to write the output files to
 
 
 
-Example command for IXI dataset, training on 10 MRIs
+Below is an example command for training the model on 10 MRIs from the IXI dataset. The model is evaluated on the test set after each epoch.
 
 
 ```
 python main.py ixi  MVTEC_LeNet <xp_path> <path_to_data> --data_split_path <path_to_metadata> --eval_epoch 1  --device cuda:2 --n  10  --objective one-class --seed 1001 --lr 0.0001 --n_epochs 150 --lr_milestone 50 --batch_size 200 --weight_decay 0.5e-6 --pretrain True  --ae_lr 0.0001 --ae_n_epochs 150 --ae_lr_milestone 50 --ae_batch_size 200 --ae_weight_decay 0.5e-3 --normal_class 1
 ```
 
-Example command for MR-ART dataset, training on 10 MRIs
+Below is an example command for training the model on 10 MRIs from the MR-ART dataset. The model is evaluated on the test set after each epoch.
 ```
 python main.py mrart  MVTEC_LeNet  <xp_path> <path_to_data> --data_split_path <path_to_metadata> --eval_epoch 1  --device cuda:0 --n 10  --objective one-class --seed 1001 --lr 0.0001 --n_epochs 150 --lr_milestone 50 --batch_size 200 --weight_decay 0.5e-6 --pretrain True  --ae_lr 0.0001 --ae_n_epochs 150 --ae_lr_milestone 50 --ae_batch_size 200 --ae_weight_decay 0.5e-3 --normal_class 1
 ```
 
-The model pretrains before training. The model is evaluated on the test set after each epoch. 
 
-### Output
+#### Output Files
 
 The output for the above command is 
 The epoch with the best result will write out a file with /final_data_n_10_seed_1001' with columns, 
 
-'output' - anomaly score (based on mean anomaly scores of slices) 
+* 'output' - anomaly score (based on mean anomaly scores of slices) 
 
-'output1' - anomaly score (based on max anomaly score of slices)
+* 'output1' - anomaly score (based on max anomaly score of slices)
 
-'label' - 0 for normals, 1s for anomalies. 
+* 'label' - 0 for normals, 1s for anomalies. 
 
-'label_sev' - ignore for IXI dataset, only applicable to 'MR-ART', 0 for normal, 1 for medium quality and 2 for good quality.
+* 'label_sev' - ignore for IXI dataset, only applicable to 'MR-ART', 0 for normal, 1 for medium quality and 2 for good quality.
 
-'pred' - converting 'output' to binary value of 0 and 1 using a threshold based on the class balance
+* 'pred' - converting 'output' to binary value of 0 and 1 using a threshold based on the class balance
 
-'pred2' - converting 'output1' to binary value of 0 and 1 using a threshold based on the class balance
+* 'pred2' - converting 'output1' to binary value of 0 and 1 using a threshold based on the class balance
 
 The log file shows after each time it is evaluated on the test set (after each epoch)
 
