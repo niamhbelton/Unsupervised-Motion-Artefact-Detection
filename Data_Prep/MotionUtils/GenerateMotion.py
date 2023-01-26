@@ -125,4 +125,4 @@ for i in range(0, len(t2Images)):
       voxelSize = imgStructure.header["pixdim"]
       data = imgStructure.get_fdata()
       print("image : {} is processing".format(imageName))
-      generateMotion(data, voxelSize[1:4], maxDisplacementInMillimeter=[3, 3, 3], maxRotInDegree=[3, 3, 3], primaryAxis=0, imageNameSuffix=imageName)
+      generateMotion(data, voxelSize[1:4], maxDisplacementInMillimeter=[3, 3, 3], maxRotInDegree=[3, 3, 3], primaryAxis=2, imageNameSuffix=imageName)
