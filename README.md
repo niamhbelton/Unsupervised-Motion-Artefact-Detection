@@ -14,7 +14,7 @@ Each model was run for five seeds, The folder metadata contains the train-test s
 * Change the file paths in the notebook 'Data_Prep/convert_mrart_to_png.ipynb' and run the notebook to convert each MR-ART MRI to individual slices of type png. The code also splits the data into folders 'ones', 'twos' and 'threes' depending on their quality assessment score as given in scores.tsv.
 
 ### IXI
-* The data for the IXI dataset is provided in 'Data_Prep/ixi_dataset.zip'. There are two directories in ixi_dataset; 'anom' and 'normal', where the anom directory contains a .tiff file for each slice of MRIs that has synthetic motion artefacts and the 'normal' directory contains the normal files.
+* The data used to train and test the model can be downloaded from the following link; https://drive.google.com/drive/folders/1liJY9vmBAYbcRIS5cwaNkS15-ir6EdFZ?usp=sharing. This data is synthetically generated from the original IXI dataset. There are two directories in ixi_dataset; 'anom' and 'normal', where the anom directory contains a .tiff file for each slice of MRIs that has synthetic motion artefacts and the 'normal' directory contains the normal files.
 * To generate the dataset in ixi_dataset.zip; 
   * download the T2 images from the following link; https://openneuro.org/datasets/ds004173/versions/1.0.2
   * modify the file paths 'genDir' and 't2Path' in Data_Prep/MotionUtils/GenerateMotion.py to the directory where you want to store the generated files and the directory where original data is. Code originally from; https://github.com/antecessor/MRI_Motion_Classification/tree/master/Utils/MotionUtils.
