@@ -138,7 +138,7 @@ The output for the above command is
 ### IGD
 
 ```
-python -u -m p256.m_ssim_main --num 1 --dataset mrart --data_path ~/motion/data/mrart/png/ --exp_name testing --data_split_path ~/motion/dfs/ > output
+python -u -m p256.m_ssim_main --num 1 --dataset mrart --data_path ~/motion/data/mrart/png/ --exp_name exp1 --data_split_path /home/niamh/motion/Unsupervised-Motion-Artefact-Detection/metadata/mrart/ > output
 ```
 
 
