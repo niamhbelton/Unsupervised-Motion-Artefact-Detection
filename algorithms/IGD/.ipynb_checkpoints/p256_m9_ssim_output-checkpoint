@@ -1,0 +1,43 @@
+Current Item: zero
+generator sigma:  tensor(1., device='cuda:0')
+auc:  0.8262036743744059
+auc:  0.9101178786370424
+auc:  0.9123458640662473
+---------------------
+ auc max:  0.9123458640662473 , 
+time:  4.064193407694499 
+------------------------
+
+Current Item: one
+generator sigma:  tensor(1., device='cuda:0')
+auc:  0.96581795955485
+auc:  0.9853956185663065
+auc:  0.9860814319541036
+---------------------
+ auc max:  0.9860814319541036 , 
+time:  4.088937628269195 
+------------------------
+
+Current Item: two
+generator sigma:  tensor(1., device='cuda:0')
+auc:  0.57770414531599
+auc:  0.7755963386614941
+auc:  0.7934329057147204
+---------------------
+ auc max:  0.7934329057147204 , 
+time:  4.1028162956237795 
+------------------------
+
+Current Item: three
+generator sigma:  tensor(1., device='cuda:0')
+auc:  0.8035583541668961
+auc:  0.9148104054009405
+auc:  0.9089316512296391
+---------------------
+ auc max:  0.9148104054009405 , 
+time:  4.090554086367289 
+------------------------
+
+Current Item: four
+generator sigma:  tensor(1., device='cuda:0')
+auc:  0.8548251426542706

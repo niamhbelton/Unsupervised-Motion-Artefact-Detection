@@ -1,0 +1,4 @@
+Current Item: airplane
+generator sigma:  tensor(13.7476, device='cuda:0')
+auc:  0.7618534450366283
+auc:  0.791892660094195

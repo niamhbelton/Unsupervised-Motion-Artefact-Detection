@@ -1,0 +1,128 @@
+>> Device Info: cuda:0 is in use
+{1: 'airplane', 2: 'automobile', 3: 'bird', 4: 'cat', 5: 'deer', 6: 'dog', 7: 'frog', 8: 'horse', 9: 'ship', 10: 'truck'}
+SAMPLE RATE: 1.0
+Current Item: airplane
+Torch seed:  10289865265138603856
+generator sigma:  tensor(13.4565, device='cuda:0')
+auc:  0.6741970977777778
+auc:  0.6989848355555556
+auc:  0.7048495088888889
+auc:  0.7248046155555555
+auc:  0.7638410999999999
+auc:  0.7682068711111111
+auc:  0.7662210222222222
+auc:  0.7658522266666666
+---------------------
+ auc final:  0.7658522266666666
+time:  49.57909667094548 
+------------------------
+
+Current Item: automobile
+Torch seed:  6264836508133919610
+generator sigma:  tensor(9.7656, device='cuda:0')
+auc:  0.8806124644444444
+
+
+>> Device Info: cuda:0 is in use
+{1: 'airplane', 2: 'automobile', 3: 'bird', 4: 'cat', 5: 'deer', 6: 'dog', 7: 'frog', 8: 'horse', 9: 'ship', 10: 'truck'}
+SAMPLE RATE: 1.0
+Current Item: airplane
+generator sigma:  tensor(13.7520, device='cuda:0')
+auc:  0.7519120088888889
+
+
+>> Device Info: cuda:0 is in use
+{1: 'airplane', 2: 'automobile', 3: 'bird', 4: 'cat', 5: 'deer', 6: 'dog', 7: 'frog', 8: 'horse', 9: 'ship', 10: 'truck'}
+SAMPLE RATE: 1.0
+Current Item: airplane
+generator sigma:  tensor(13.7677, device='cuda:0')
+auc:  0.7267685155555555
+auc:  0.7685282688888889
+
+
+SEED: torch, 0; np and random, 15
+
+>> Device Info: cuda:0 is in use
+{1: 'airplane', 2: 'automobile', 3: 'bird', 4: 'cat', 5: 'deer', 6: 'dog', 7: 'frog', 8: 'horse', 9: 'ship', 10: 'truck'}
+SAMPLE RATE: 1.0
+Current Item: airplane
+generator sigma:  tensor(13.7677, device='cuda:0')
+auc:  0.7267684933333334
+auc:  0.7685975155555557
+auc:  0.7594038466666666
+auc:  0.8085826177777777
+auc:  0.806836568888889
+auc:  0.7798999533333334
+auc:  0.7895875355555556
+
+
+# 02:24 20-11-2022
+
+>> Device Info: cuda:0 is in use
+{1: 'airplane', 2: 'automobile', 3: 'bird', 4: 'cat', 5: 'deer', 6: 'dog', 7: 'frog', 8: 'horse', 9: 'ship', 10: 'truck'}
+SAMPLE RATE: 1.0
+Current Item: airplane
+generator sigma:  tensor(13.7476, device='cuda:0')
+auc:  0.7453166818535394
+auc:  0.7903970418935438
+auc:  0.7829046382931435
+auc:  0.7832283942660295
+auc:  0.7858215490610067
+---------------------
+ auc final:  0.7858215490610067
+--------------------- average auc:  0.7775336610734526
+time:  31.221426037947335 
+------------------------
+
+Current Item: automobile
+generator sigma:  tensor(10.1977, device='cuda:0')
+auc:  0.8266803843567785
+auc:  0.8218177396967187
+auc:  0.7998622077006013
+auc:  0.8101139337882852
+auc:  0.8122838641423634
+---------------------
+ auc final:  0.8122838641423634
+--------------------- average auc:  0.8141516259369495
+time:  31.24598835706711 
+------------------------
+
+Current Item: bird
+generator sigma:  tensor(15.7214, device='cuda:0')
+auc:  0.7065919984601419
+auc:  0.7073732974881936
+auc:  0.7109177458213662
+auc:  0.7145615384077795
+auc:  0.7118698919799962
+---------------------
+ auc final:  0.7118698919799962
+--------------------- average auc:  0.7102628944314955
+time:  31.279917450745902 
+------------------------
+
+Current Item: cat
+generator sigma:  tensor(13.1503, device='cuda:0')
+auc:  0.747884151572397
+auc:  0.7463648116457384
+auc:  0.72062108900989
+auc:  0.6996105256139571
+auc:  0.698815561729081
+---------------------
+ auc final:  0.698815561729081
+--------------------- average auc:  0.7226592279142127
+time:  31.23951638539632 
+------------------------
+
+
+# 08:53 20-11-2022; whole train data was used as test before and inckuding 'deer'. 
+
+Current Item: deer
+generator sigma:  tensor(13.7476, device='cuda:0')
+auc:  0.7453167085231692
+auc:  0.7667423380375598
+auc:  0.7773540237804201
+auc:  0.775424562729192
+auc:  0.7767328214246028
+
+# Only Test set used for validation after this
+
