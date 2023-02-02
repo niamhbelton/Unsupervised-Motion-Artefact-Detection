@@ -135,7 +135,11 @@ The output for the above command is
 
 * A log file named log.txt is output to the xp_path with training and testing details. This provides details on the AUC, F1, Balanced accuracy and inference time.
 
+### IGD
 
+```
+python -u -m p256.m_ssim_main --num 1 --dataset mrart --data_path ~/motion/data/mrart/png/ --exp_name testing --data_split_path ~/motion/dfs/ > output
+```
 
 
 ## References
