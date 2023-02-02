@@ -147,13 +147,14 @@ The arguments to run the model are shown below;
  
  
  ```
-parser = argparse.ArgumentParser(description='CIFAR10 Training')
+parser = argparse.ArgumentParser(description='Training')
 parser.add_argument('-n', '--num', nargs='+', type=int, help='<Required> Set flag', required=True)
 parser.add_argument('-sr', '--sample_rate', default=1, type=float)
 parser.add_argument( '--dataset', default='mnist', type=str)
 parser.add_argument( '--exp_name',type=str)
-parser.add_argument( '--data_path',type=str, help='Required for MR-ART and IXI dataset')
-parser.add_argument( '--data_split_path',type=str, help='Required for IXI dataset')
+parser.add_argument( '--data_path',type=str, help='path to data')
+parser.add_argument( '--data_split_path',type=str, help='Required for IXI and MR-ART dataset, path to train-test split metadata')
+
  ```
  
 Below is an example command for training the model on train set sizes of 10, 20 and 30 for five seeds on the IXI dataset. The model is evaluated on the test set after each epoch.
