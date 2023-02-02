@@ -48,7 +48,7 @@ Code based on: https://github.com/lukasruff/Deep-SVDD
 Run the following commands before running the model. The 'xp_path' is the directory to write the output files to.
 
 ```
-cd Deep-SVDD
+cd <path-to-Deep-SVDD-directory>
 mkdir <xp_path>
 cd src
 ```
@@ -113,12 +113,12 @@ Below is an example command for training the model on 10 MRIs from the IXI datas
 
 
 ```
-python main.py ixi  MVTEC_LeNet <xp_path> <path_to_data> --data_split_path <path_to_metadata> --eval_epoch 1  --device cuda:2 --n  10  --objective one-class --seed 1001 --lr 0.0001 --n_epochs 150 --lr_milestone 50 --batch_size 200 --weight_decay 0.5e-6 --pretrain True  --ae_lr 0.0001 --ae_n_epochs 150 --ae_lr_milestone 50 --ae_batch_size 200 --ae_weight_decay 0.5e-3 --normal_class 1
+python main.py ixi  MVTEC_LeNet <xp_path> <path_to_data> --data_split_path <path_to_metadata>/ixi --eval_epoch 1  --device cuda:2 --n  10  --objective one-class --seed 1001 --lr 0.0001 --n_epochs 150 --lr_milestone 50 --batch_size 200 --weight_decay 0.5e-6 --pretrain True  --ae_lr 0.0001 --ae_n_epochs 150 --ae_lr_milestone 50 --ae_batch_size 200 --ae_weight_decay 0.5e-3 --normal_class 1
 ```
 
 Below is an example command for training the model on 10 MRIs from the MR-ART dataset. The model is evaluated on the test set after each epoch.
 ```
-python main.py mrart  MVTEC_LeNet  <xp_path> <path_to_data> --data_split_path <path_to_metadata> --eval_epoch 1  --device cuda:0 --n 10  --objective one-class --seed 1001 --lr 0.0001 --n_epochs 150 --lr_milestone 50 --batch_size 200 --weight_decay 0.5e-6 --pretrain True  --ae_lr 0.0001 --ae_n_epochs 150 --ae_lr_milestone 50 --ae_batch_size 200 --ae_weight_decay 0.5e-3 --normal_class 1
+python main.py mrart  MVTEC_LeNet  <xp_path> <path_to_data> --data_split_path <path_to_metadata>/mrart --eval_epoch 1  --device cuda:0 --n 10  --objective one-class --seed 1001 --lr 0.0001 --n_epochs 150 --lr_milestone 50 --batch_size 200 --weight_decay 0.5e-6 --pretrain True  --ae_lr 0.0001 --ae_n_epochs 150 --ae_lr_milestone 50 --ae_batch_size 200 --ae_weight_decay 0.5e-3 --normal_class 1
 ```
 
 
@@ -136,14 +136,66 @@ The output for the above command is
 * A log file named log.txt is output to the xp_path with training and testing details. This provides details on the AUC, F1, Balanced accuracy and inference time.
 
 ### IGD
+ 
+ Run the following commands before running the model. The 'xp_path' is the directory to write the output files to.
 
 ```
-python -u -m p256.m_ssim_main --num 1 --dataset mrart --data_path ~/motion/data/mrart/png/ --exp_name exp1 --data_split_path /home/niamh/motion/Unsupervised-Motion-Artefact-Detection/metadata/mrart/ > output
+cd <path-to-IGD-directory>
+```
+
+The arguments to run the model are shown below;
+ 
+ 
+ ```
+parser = argparse.ArgumentParser(description='CIFAR10 Training')
+parser.add_argument('-n', '--num', nargs='+', type=int, help='<Required> Set flag', required=True)
+parser.add_argument('-sr', '--sample_rate', default=1, type=float)
+parser.add_argument( '--dataset', default='mnist', type=str)
+parser.add_argument( '--exp_name',type=str)
+parser.add_argument( '--data_path',type=str, help='Required for MR-ART and IXI dataset')
+parser.add_argument( '--data_split_path',type=str, help='Required for IXI dataset')
+ ```
+ 
+Below is an example command for training the model on train set sizes of 10, 20 and 30 for five seeds on the IXI dataset. The model is evaluated on the test set after each epoch.
+```
+python -u -m p256.m_ssim_main --num 1 --dataset ixi --data_path <path-to-generate-data> --exp_name exp1 --data_split_path <path-to-metadata>/ixi/ > output
+ ```
+ 
+Below is an example command for training the model on train set sizes of 10, 20 and 30 for five seeds on the MR-ART dataset. The model is evaluated on the test set after each epoch.
+```
+python -u -m p256.m_ssim_main --num 1 --dataset mrart --data_path <path-to-data-in-png-format> --exp_name exp1 --data_split_path <path-to-metadata>/mrart/ > output
 
 ```
-```
-python -u -m p256.m_ssim_main --num 1 --dataset ixi --data_path ~/motion/ixi_correct/gen/data/ --exp_name exp1 --data_split_path /home/niamh/motion/Unsupervised-Motion-Artefact-Detection/metadata/ixi/ > output
-```
+
+
+#### Output Files
+ The above commands will output all training details to a file named 'output'. After each iteration of the model, the code prints;
+* 'Training time at iteration x is x, loss is x'
+* 'Accuracy with severity' - severity accuracy based on max anomaly score of slices (only applicable to MR-ART dataset)
+* 'Accuracy with severity'- severity accuracy based on mean anomaly score of slices (only applicable to MR-ART dataset)
+* 'AUC score is' - AUC on test set based on max anomaly score of slices
+* 'acc score is' - Balanced Accuracy on test set based on max anomaly score of slices
+* 'f1 score is' - F1 on test set based on max anomaly score of slices
+* 'inference time:' - total inference time for complete test set
+* 'Based on Mean:' - the following results are based on mean anomaly score of slices
+* 'AUC score is' - AUC on test set based on mean anomaly score of slices
+* 'acc score is' - Balanced accuracy on test set based on mean anomaly score of slices
+* 'f1 score is' - F1 on test set based on mean anomaly score of slices
+
+ 
+ At the end of training, the file will print;
+* 'Check inference time...'
+* 'Inference time for one pass is' - inference time for one data point
+* '<train-set-size>  = size of training dataset. END.'
+* seed <seed>'
+* 'num_images <train-set-size>
+* 'Normal num <normal-class-index>' - this is always zero for both MR-ART and IXI dataset
+* 'AUC max store:' - best AUC score
+* 'F1 store:' - best F1 score
+* 'ACC store:' - best balanced accuracy score 
+
+ 
+ 
 
 ## References
 
