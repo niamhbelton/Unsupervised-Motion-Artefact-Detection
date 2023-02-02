@@ -38,13 +38,13 @@ import utils
 
 device = torch.device("cuda:1")
 # print(">> Device Info: {} is in use".format(device))
-parser = argparse.ArgumentParser(description='CIFAR10 Training')
+parser = argparse.ArgumentParser(description='Training')
 parser.add_argument('-n', '--num', nargs='+', type=int, help='<Required> Set flag', required=True)
 parser.add_argument('-sr', '--sample_rate', default=1, type=float)
 parser.add_argument( '--dataset', default='mnist', type=str)
 parser.add_argument( '--exp_name',type=str)
-parser.add_argument( '--data_path',type=str, help='Required for MR-ART and IXI dataset')
-parser.add_argument( '--data_split_path',type=str, help='Required for IXI dataset')
+parser.add_argument( '--data_path',type=str, help='path to data')
+parser.add_argument( '--data_split_path',type=str, help='Required for IXI and MR-ART dataset, path to train-test split metadata')
 
 
 DIM = 32  # Model dimensionality
@@ -392,9 +392,6 @@ def train(args, NORMAL_NUM,
             print('AUC score is {}'.format(AUC_LIST2[-1]))
             print('acc score is {}'.format(ACC_LIST2[-1]))
             print('f1 score is {}'.format(F1_LIST2[-1]))
-            print('inference time: {}'.format( inf_time))
-            print('Acc sev based on mean is  {}'.format(SEV_MEAN_LIST[-1]))
-            print('Acc sev based on max is  {}'.format(SEV_MAX_LIST[-1]))
 
 
 
@@ -410,20 +407,7 @@ def train(args, NORMAL_NUM,
 
 
 
-        #    process.set_description("{F1: %.5f}" % F1_LIST[-1])
-        #    process.set_description("{ACC: %.5f}" % ACC_LIST[-1])
-            # opt_path = ckpt_path + '/optimizer'
-            # if not os.path.exists(opt_path):
-            #     os.mkdir(path=opt_path)
-            # torch.save(optimizer_g.state_dict(), ckpt_path + '/optimizer/g_opt.pth')
-            # torch.save(optimizer_d.state_dict(), ckpt_path + '/optimizer/d_opt.pth')
-    print('---------------------\n auc max: ', max(AUC_LIST), ', ')
     max_ind = np.argmax(AUC_LIST)
-    print('---------------------\n on epoch: ', max_ind, ', ')
-    print('---------------------\n F1: ', F1_LIST[max_ind], ', ')
-    print('---------------------\n ACC: ', ACC_LIST[max_ind], ', ')
-    print('---------------------\n Training Time: ', tts[max_ind], ', ')
-    print('---------------------\n Inference Time: ', inf_times[max_ind], ', ')
 
     auc_max_store.append(max(AUC_LIST))
     f1_store.append(F1_LIST[max_ind])
