@@ -12,8 +12,8 @@ from PIL import Image
 from ImageTransform import ImageTransformer
 from CartesianSampler import CartesianSampler
 
-genDir = ""
-t2Path = ""
+genDir = "" #path to store generated images
+t2Path = "" #path to IXI data
 t2Images = os.listdir(t2Path)
 
 fig, axes = plt.subplots(1, 2)
