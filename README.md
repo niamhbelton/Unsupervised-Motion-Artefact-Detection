@@ -186,8 +186,8 @@ python -u -m p256.m_ssim_main --num 1 --dataset mrart --data_path <path-to-data-
  At the end of training, the file will print;
 * 'Check inference time...'
 * 'Inference time for one pass is' - inference time for one data point
-* ' <train-set-size>  = size of training dataset. END.'
-* seed <seed>'
+* ' '<train-set-size>'  = size of training dataset. END.'
+* 'seed ' <seed> '
 * 'num_images <train-set-size> '
 * 'Normal num <normal-class-index> ' - this is always zero for both MR-ART and IXI dataset
 * 'AUC max store:' - best AUC score
