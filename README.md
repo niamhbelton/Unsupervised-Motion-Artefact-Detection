@@ -139,8 +139,11 @@ The output for the above command is
 
 ```
 python -u -m p256.m_ssim_main --num 1 --dataset mrart --data_path ~/motion/data/mrart/png/ --exp_name exp1 --data_split_path /home/niamh/motion/Unsupervised-Motion-Artefact-Detection/metadata/mrart/ > output
-```
 
+```
+```
+python -u -m p256.m_ssim_main --num 1 --dataset ixi --data_path ~/motion/ixi_correct/gen/data/ --exp_name exp1 --data_split_path /home/niamh/motion/Unsupervised-Motion-Artefact-Detection/metadata/ixi/ > output
+```
 
 ## References
 
