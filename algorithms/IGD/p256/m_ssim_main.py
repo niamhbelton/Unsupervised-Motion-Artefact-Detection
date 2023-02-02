@@ -610,11 +610,6 @@ def validation_vote(valid_dataset_loader, NORMAL_NUM, iteration, generator, disc
                     else:
                         y.append(1)
 
-                    if int((index * BATCH_SIZE) + visual_index) % 10000 ==0:
-                        print(int((index * BATCH_SIZE) + visual_index))
-
-
-
 
 
 
@@ -640,12 +635,10 @@ def validation_vote(valid_dataset_loader, NORMAL_NUM, iteration, generator, disc
     scores1 = np.array(df2['s1'])
     scores2 = np.array(df2['s2'])
 
-    print(df2['label'].value_counts())
+    print('Validation label split is {}'.format(df2['label'].value_counts()))
     #assert df2['label'].value_counts().values[0] == df2['label'].value_counts().values[1]
 
-    print(df2)
-    print(labels)
-    print(scores1)
+
     fpr, tpr, thresholds = metrics.roc_curve(labels, scores1)
     perc_thres = int((len(df2['label'].loc[df2['label'] ==0]) / (len(df2['label'].loc[df2['label'] ==1]) + len(df2['label'].loc[df2['label'] ==0])))*100)
     thresh = np.percentile(scores1, perc_thres)
