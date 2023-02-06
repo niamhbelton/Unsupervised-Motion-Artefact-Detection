@@ -43,8 +43,8 @@ parser.add_argument('-n', '--num', nargs='+', type=int, help='<Required> Set fla
 parser.add_argument('-sr', '--sample_rate', default=1, type=float)
 parser.add_argument( '--dataset', default='mnist', type=str)
 parser.add_argument( '--exp_name',type=str)
-parser.add_argument( '--data_path',type=str, help='Required for MR-ART and IXI dataset')
-parser.add_argument( '--data_split_path',type=str, help='Required for IXI dataset')
+parser.add_argument( '--data_path',type=str, help='path to data')
+parser.add_argument( '--data_split_path',type=str, help='Required for IXI and MR-ART dataset, path to train-test split metadata')
 
 
 DIM = 32  # Model dimensionality
