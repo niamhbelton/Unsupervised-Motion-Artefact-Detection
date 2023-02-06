@@ -123,9 +123,6 @@ def get_loaders(num_images, dataset, label_class, batch_size, seed, data_path,da
                 else:
                     testset.targets[i] = 1
 
-        print('\ntrainset.data shape:', len(trainset.data))
-
-
         g = torch.Generator()
         g.manual_seed(0)
 

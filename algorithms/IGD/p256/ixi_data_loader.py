@@ -124,7 +124,7 @@ class IXI(data.Dataset):
 
     #    self.data = np.array(self.data)
         self.targets = np.array(self.targets)
-        print('Class balance in validation is {}'.format(pd.DataFrame(self.targets).iloc[:,0].value_counts()))
+    #    print('Class balance in validation is {}'.format(pd.DataFrame(self.targets).iloc[:,0].value_counts()))
 
 
     def __getitem__(self, index):
