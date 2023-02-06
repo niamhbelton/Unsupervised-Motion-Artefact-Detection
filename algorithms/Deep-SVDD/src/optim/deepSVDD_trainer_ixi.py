@@ -132,8 +132,6 @@ class DeepSVDDTrainer_ixi(BaseTrainer):
 
         self.train_time = time.time() - start_time
         logger.info('Training time: %.3f' % self.train_time)
-        print('in optim')
-        print(self.final_data)
         logger.info('Finished training.')
 
         return net
@@ -178,20 +176,17 @@ class DeepSVDDTrainer_ixi(BaseTrainer):
 
                 inf_times.append(time.time() - t1)
                 for i in range(len(labels)):
-        #            print(labels[i])
-        #            print(labels[i].cpu().data.numpy().tolist())
+       
                     if original_file[i] in used:
                         dict_score1['{}'.format(original_file[i])].append(scores[i].cpu().data.numpy())
-                        if (labels[i].cpu().data.numpy().tolist() == 1) & (dict_label['{}'.format(original_file[i])] ==0):
-                            print(original_file[i])
+                        
                         dict_label['{}'.format(original_file[i])]=labels[i].cpu().data.numpy().tolist()
                         dict_label_sev['{}'.format(original_file[i])]=label_sev[i].cpu().data.numpy().tolist()
                         orig_files.append(original_file[i])
                     else:
                         dict_score1['{}'.format(original_file[i])] = []
                         dict_score1['{}'.format(original_file[i])].append(scores[i].cpu().data.numpy())
-                    #    dict_label['{}'.format(original_file[i])]=[]
-                    #    dict_label['{}'.format(original_file[i])].append(labels[i].cpu().data.numpy().tolist())
+                   
                         dict_label['{}'.format(original_file[i])]=labels[i].cpu().data.numpy().tolist()
                         dict_label_sev['{}'.format(original_file[i])] = label_sev[i].cpu().data.numpy().tolist()
                         orig_files.append(original_file[i])
@@ -215,27 +210,18 @@ class DeepSVDDTrainer_ixi(BaseTrainer):
         df=pd.merge(s1, s2,  on='file')
         df=pd.merge(df, labs, on ='file')
         df2=pd.merge(df, labs_sev, on ='file')
-        df2.to_csv('data2.csv')
-
-
-
-
-
-
 
         labels = np.array(df2['label'])
         label_sev = np.array(df2['label_sev'])
         scores1 = np.array(df2['s1'])
         scores2 = np.array(df2['s2'])
 
-        print(df2['label'].value_counts())
         assert df2['label'].value_counts().values[0] == df2['label'].value_counts().values[1]
 
 
         #get auc and f1 based on score 1, binary
         self.test_auc = roc_auc_score(labels, scores1)
         perc_thres = int((len(df2['label'].loc[df2['label'] ==0]) / (len(df2['label'].loc[df2['label'] ==1]) + len(df2['label'].loc[df2['label'] ==0])))*100)
-        print(perc_thres)
         thresh = np.percentile(scores1, perc_thres)
         y_pred = np.where(scores1 >= thresh, 1, 0)
         prec, recall, test_metric, _ = precision_recall_fscore_support(
@@ -257,12 +243,6 @@ class DeepSVDDTrainer_ixi(BaseTrainer):
 
         df=pd.concat([pd.DataFrame(scores1),pd.DataFrame(scores2), pd.DataFrame(labels), pd.DataFrame(label_sev), pd.DataFrame(y_pred), pd.DataFrame(y_pred2)], axis =1)
         df.columns = ['output', 'output2','label', 'label_sev','pred','pred2']
-        print('AUC is {}'.format(roc_auc_score(labels, scores1)))
-        print('prec is {}'.format(prec))
-        print('recall is {}'.format(recall))
-        print('AUC based on max is {}'.format(roc_auc_score(labels, scores2)))
-        print('prec based on max is is {}'.format(prec2))
-        print('recall based on max is is {}'.format(recall2))
         sense = len(df.loc[(df['label'] == 1) & (df['pred'] == 1)] ) /( len(df.loc[(df['label'] == 1) & (df['pred'] == 0)] ) + len(df.loc[(df['label'] == 1) & (df['pred'] == 1)] ))
         spec = len(df.loc[(df['label'] == 0) & (df['pred'] == 0)] ) /( len(df.loc[(df['label'] == 0) & (df['pred'] == 0)] ) + len(df.loc[(df['label'] == 0) & (df['pred'] == 1)] ))
         sense2 = len(df.loc[(df['label'] == 1) & (df['pred2'] == 1)] ) /( len(df.loc[(df['label'] == 1) & (df['pred2'] == 0)] ) + len(df.loc[(df['label'] == 1) & (df['pred2'] == 1)] ))
@@ -287,11 +267,6 @@ class DeepSVDDTrainer_ixi(BaseTrainer):
         logger.info('Test set AUC based on max anomaly score per volume:  {:.2f}%'.format(100. * self.test_auc2))
         logger.info('Test set F1 based on max anomaly score per volume:  {:.2f}%'.format(100. * self.test_f1_2))
         logger.info('Test set Balanced Accuracy based on max anomaly score per volume:  {:.2f}%'.format(100. * self.test_acc2))
-
-
-
-    #    logger.info('Severity AUC {:.2f}%'.format(100. * auc_sev ))
-    #    logger.info('Severity AUC based on max {:.2f}%'.format(100. * auc_sev2 ))
 
         logger.info('Average inference time per batch {}'.format(np.mean(inf_times)))
 
