@@ -137,7 +137,7 @@ The output for the above command is
 
 ### IGD
  
- Run the following commands before running the model. The 'xp_path' is the directory to write the output files to.
+ Run the following command before training the model. 
 
 ```
 cd <path-to-IGD-directory>
@@ -192,8 +192,8 @@ python -u -m p256.m_ssim_main --num 1 --dataset mrart --data_path <path-to-data-
 * 'num_images train-set-size' 
 * 'Normal num normal-class-index' - this is always zero for both MR-ART and IXI dataset
 * 'AUC max store:' - best AUC score
-* 'F1 store:' - best F1 score
-* 'ACC store:' - best balanced accuracy score 
+* 'F1 store:' - F1 score on epoch of best AUC
+* 'ACC store:' - balanced accuracy score on epoch of best AUC
 
  
  
