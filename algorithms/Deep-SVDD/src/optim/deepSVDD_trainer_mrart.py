@@ -132,8 +132,7 @@ class DeepSVDDTrainer_mrart(BaseTrainer):
 
         self.train_time = time.time() - start_time
         logger.info('Training time: %.3f' % self.train_time)
-        print('in optim')
-        print(self.final_data)
+        
         logger.info('Finished training.')
 
         return net
@@ -207,12 +206,7 @@ class DeepSVDDTrainer_mrart(BaseTrainer):
         df=pd.merge(s1, s2,  on='file')
         df=pd.merge(df, labs, on ='file')
         df2=pd.merge(df, labs_sev, on ='file')
-        df2.to_csv('data2.csv')
-
-        print(df2['label'].value_counts())
-
-
-
+       
 
 
 
@@ -277,12 +271,7 @@ class DeepSVDDTrainer_mrart(BaseTrainer):
 
         df=pd.concat([pd.DataFrame(scores1),pd.DataFrame(scores2), pd.DataFrame(labels),pd.DataFrame(label_sev), pd.DataFrame(y_pred), pd.DataFrame(y_pred2)], axis =1)
         df.columns = ['output', 'output2','label', 'label_sev','pred','pred2']
-        print('AUC is {}'.format(roc_auc_score(labels, scores1)))
-        print('prec is {}'.format(prec))
-        print('recall is {}'.format(recall))
-        print('AUC based on max is {}'.format(roc_auc_score(labels, scores2)))
-        print('prec based on max is is {}'.format(prec2))
-        print('recall based on max is is {}'.format(recall2))
+        
         sense = len(df.loc[(df['label'] == 1) & (df['pred'] == 1)] ) /( len(df.loc[(df['label'] == 1) & (df['pred'] == 0)] ) + len(df.loc[(df['label'] == 1) & (df['pred'] == 1)] ))
         spec = len(df.loc[(df['label'] == 0) & (df['pred'] == 0)] ) /( len(df.loc[(df['label'] == 0) & (df['pred'] == 0)] ) + len(df.loc[(df['label'] == 0) & (df['pred'] == 1)] ))
         sense2 = len(df.loc[(df['label'] == 1) & (df['pred2'] == 1)] ) /( len(df.loc[(df['label'] == 1) & (df['pred2'] == 0)] ) + len(df.loc[(df['label'] == 1) & (df['pred2'] == 1)] ))
