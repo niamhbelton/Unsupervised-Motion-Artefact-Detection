@@ -43,8 +43,8 @@ parser.add_argument('-n', '--num', nargs='+', type=int, help='<Required> Set fla
 parser.add_argument('-sr', '--sample_rate', default=1, type=float)
 parser.add_argument( '--dataset', default='mnist', type=str)
 parser.add_argument( '--exp_name',type=str)
-parser.add_argument( '--data_path',type=str, help='Required for MR-ART and IXI dataset')
-parser.add_argument( '--data_split_path',type=str, help='Required for IXI dataset')
+parser.add_argument( '--data_path',type=str, help='path to data')
+parser.add_argument( '--data_split_path',type=str, help='Required for IXI and MR-ART dataset, path to train-test split metadata')
 
 
 DIM = 32  # Model dimensionality
@@ -373,7 +373,7 @@ def train(args, NORMAL_NUM,
         print('Training time at iteration {} is {}, loss is {}'.format(iteration, training_time, d_loss ))
     #    if (iteration % int((train_size / BATCH_SIZE) * 20) == 0 and iteration > 0)  or iteration == END_ITER - 1: # * 5
         is_end = True if iteration == END_ITER - 1 else False
-        if (dataset == 'mrart') | (dataset == 'ixi'):
+        if (dataset == 'mrart') | (dataset == 'ixi') | (dataset == 'cmr'):
             test_auc, AUC_LIST, F1_LIST, ACC_LIST, inf_time, auc_result2, AUC_LIST2, F1_LIST2, ACC_LIST2,SEV_MAX_LIST, SEV_MEAN_LIST,df= validation_vote(valid_data_loader, NORMAL_NUM, iteration, generator, discriminator, real_data, fake_data, is_end, AUC_LIST, F1_LIST, ACC_LIST, AUC_LIST2, F1_LIST2, ACC_LIST2 , SEV_MAX_LIST, SEV_MEAN_LIST , END_ITER, BATCH_SIZE,dataset)
 
         else:
@@ -386,7 +386,7 @@ def train(args, NORMAL_NUM,
         print('f1 score is {}'.format(F1_LIST[-1]))
         print('inference time: {}'.format( inf_time))
 
-        if (dataset == 'mrart' )| (dataset == 'ixi'):
+        if (dataset == 'mrart' )| (dataset == 'ixi') |  (dataset == 'cmr'):
             print('Based on Mean:')
             process.set_description("{AUC: %.5f}" % auc_result2)
             print('AUC score is {}'.format(AUC_LIST2[-1]))
@@ -420,7 +420,7 @@ def train(args, NORMAL_NUM,
     print('time: ', training_time, '\n------------------------\n')
 
     print('Check inference time...')
-    if (dataset == 'mrart') | (dataset == 'ixi'):
+    if (dataset == 'mrart') | (dataset == 'ixi') | (dataset == 'cmr'):
         one_pass_inf = inf(generator, discriminator,dataset,train_size, NORMAL_NUM,seed,args.data_path)
 
     print('Inference time for one pass is {}'.format(one_pass_inf))
@@ -791,7 +791,7 @@ if __name__ == "__main__":
             elif (num_images == 100):
                 BATCH_SIZE =50
 
-            if (args.dataset == 'mrart'  )| (args.dataset == 'ixi'):
+            if (args.dataset == 'mrart'  )| (args.dataset == 'ixi') | (args.dataset == 'cmr'):
                 BATCH_SIZE = 24
 
 

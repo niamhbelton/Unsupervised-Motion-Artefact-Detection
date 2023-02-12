@@ -27,7 +27,7 @@ class AETrainer_mvtec(BaseTrainer):
         # Get train data loader
         train_loader = DataLoader(dataset=dataset[0], batch_size=self.batch_size, shuffle=False,
                                                             num_workers=0)
-
+        print(dataset[0])
         # Set optimizer (Adam optimizer for now)
         optimizer = optim.Adam(ae_net.parameters(), lr=self.lr, weight_decay=self.weight_decay,
                                amsgrad=self.optimizer_name == 'amsgrad')

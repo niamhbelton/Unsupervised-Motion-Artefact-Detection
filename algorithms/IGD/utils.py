@@ -4,6 +4,8 @@ import torchvision.transforms as transforms
 import numpy as np
 import random
 from p256.mrart_data_loader import MRART
+from p256.cmr_data_loader import CMR
+
 # import faiss
 from p256.ixi_data_loader import IXI
 
@@ -62,7 +64,7 @@ def seed_worker(worker_id):
     random.seed(15) # worker_seed
 
 def get_loaders(num_images, dataset, label_class, batch_size, seed, data_path,data_split_path):
-    if dataset in ['cifar10', 'mnist', 'fashion', 'mrart','ixi']:
+    if dataset in ['cifar10', 'mnist', 'fashion', 'mrart','ixi','cmr']:
         if dataset == "cifar10":
             ds = torchvision.datasets.CIFAR10  #uncomment on new run
             transform = transform_color
@@ -89,6 +91,13 @@ def get_loaders(num_images, dataset, label_class, batch_size, seed, data_path,da
             testset = MRART(data_path, label_class,
                     'test', seed, num_images, None, data_split_path)
 
+        elif (dataset == "cmr") :
+            coarse = {}
+            trainset = CMR(data_path, label_class,
+                    'train', seed, num_images, None, data_split_path)
+            testset = CMR(data_path, label_class,
+                    'test', seed, num_images, None, data_split_path)
+
         elif dataset == 'ixi':
             coarse = {}
             trainset = IXI(data_path, label_class,
@@ -98,7 +107,7 @@ def get_loaders(num_images, dataset, label_class, batch_size, seed, data_path,da
 
 
 
-        if (dataset != 'mrart') & (dataset != 'ixi'):
+        if (dataset != 'mrart') & (dataset != 'ixi') & (dataset != 'cmr'):
             idx = np.where(np.array(trainset.targets) == label_class)[0]
             trainset.data = trainset.data[idx]
             trainset.targets = [0]*len(trainset.data)

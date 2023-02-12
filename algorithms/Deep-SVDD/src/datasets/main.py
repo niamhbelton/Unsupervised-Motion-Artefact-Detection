@@ -4,6 +4,8 @@ from .mvtec import MVTEC_Dataset
 from .fmnist import FMNIST_Dataset
 from .mrart import MRART_Dataset
 from .ixi import IXI_Dataset
+from .cmr import CMR_Dataset
+
 
 def load_dataset(dataset_name, data_path, pollution, N, normal_class, task = None,seed=None,data_split_path=None):
     """Loads the dataset."""
@@ -28,5 +30,8 @@ def load_dataset(dataset_name, data_path, pollution, N, normal_class, task = Non
 
     if dataset_name == 'ixi':
         dataset = IXI_Dataset(root=data_path, pollution = pollution, N=N, normal_class=normal_class,task=task,seed=seed, data_split_path = data_split_path)
+
+    if dataset_name == 'cmr':
+        dataset = CMR_Dataset(root=data_path, pollution = pollution, N=N, normal_class=normal_class,task=task,seed=seed, data_split_path = data_split_path)
 
     return dataset

@@ -10,6 +10,7 @@ from deepSVDD import DeepSVDD
 from deepSVDD_mvtec import DeepSVDD_mvtec
 from deepSVDD_mrart import DeepSVDD_mrart
 from deepSVDD_ixi import DeepSVDD_ixi
+from deepSVDD_cmr import DeepSVDD_cmr
 
 from datasets.main import load_dataset
 
@@ -18,7 +19,7 @@ from datasets.main import load_dataset
 # Settings
 ################################################################################
 @click.command()
-@click.argument('dataset_name', type=click.Choice(['ixi', 'mrart','mnist', 'fmnist', 'cifar10']))
+@click.argument('dataset_name', type=click.Choice(['ixi', 'cmr','mrart','mnist', 'fmnist', 'cifar10']))
 @click.argument('net_name',type=click.Choice(['MVTEC_LeNet', 'FMNIST_LeNet', 'CIFAR10_LeNet', 'MNIST_LeNet']))
 @click.argument('xp_path', type=click.Path(exists=True))
 @click.argument('data_path',  type=click.Path(exists=True))
@@ -127,7 +128,7 @@ def main(dataset_name, net_name, xp_path, data_path, pollution, n, load_config, 
         test_dataset = load_dataset(dataset_name, data_path, pollution,n, normal_class, task='test')
         train_dataset = load_dataset(dataset_name, data_path, pollution,n, normal_class, task='train')
         dataset= [train_dataset, test_dataset]
-    elif (dataset_name =='mrart') | (dataset_name == 'ixi'):
+    elif (dataset_name =='mrart') | (dataset_name == 'ixi') | (dataset_name == 'cmr'):
         train_dataset = load_dataset(dataset_name, data_path, pollution,n, normal_class, task='train',seed=seed, data_split_path=data_split_path)
         print('get test data')
         test_dataset = load_dataset(dataset_name, data_path, pollution,n, normal_class, task='test',seed=seed, data_split_path=data_split_path)
@@ -142,8 +143,12 @@ def main(dataset_name, net_name, xp_path, data_path, pollution, n, load_config, 
         deep_SVDD = DeepSVDD_mrart(cfg.settings['objective'], cfg.settings['nu'])
     elif dataset_name == 'ixi':
         deep_SVDD = DeepSVDD_ixi(cfg.settings['objective'], cfg.settings['nu'])
+    elif dataset_name == 'cmr':
+        deep_SVDD = DeepSVDD_cmr(cfg.settings['objective'], cfg.settings['nu'])
     else:
         deep_SVDD = DeepSVDD(cfg.settings['objective'], cfg.settings['nu'])
+
+    print('here {}'.format(deep_SVDD))
     deep_SVDD.set_network(net_name)
     # If specified, load Deep SVDD model (radius R, center c, network weights, and possibly autoencoder weights)
     if load_model:
@@ -180,7 +185,7 @@ def main(dataset_name, net_name, xp_path, data_path, pollution, n, load_config, 
     logger.info('Training weight decay: %g' % cfg.settings['weight_decay'])
 
     # Train model on dataset
-    if (dataset_name  == 'ixi') | (dataset_name == 'mrart'):
+    if (dataset_name  == 'ixi') | (dataset_name == 'mrart') | (dataset_name == 'cmr'):
         deep_SVDD.train(dataset,
                         optimizer_name=cfg.settings['optimizer_name'],
                         lr=cfg.settings['lr'],
