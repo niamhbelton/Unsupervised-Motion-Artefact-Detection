@@ -159,7 +159,7 @@ parser.add_argument( '--data_split_path',type=str, help='Required for IXI and MR
  
 Below is an example command for training the model on train set sizes of 10, 20 and 30 for five seeds on the IXI dataset. The model is evaluated on the test set after each epoch.
 ```
-python -u -m p256.m_ssim_main --num 1 --dataset ixi --data_path <path-to-generate-data> --exp_name exp1 --data_split_path <path-to-metadata>/ixi/ > output
+python -u -m p256.m_ssim_main --num 1 --dataset ixi --data_path <path-to-data-that-was-generated> --exp_name exp1 --data_split_path <path-to-metadata>/ixi/ > output
  ```
  
 Below is an example command for training the model on train set sizes of 10, 20 and 30 for five seeds on the MR-ART dataset. The model is evaluated on the test set after each epoch.
